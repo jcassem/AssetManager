@@ -1,4 +1,4 @@
-# --- Ups!
+# --- !Ups
 
 INSERT INTO asset(name) VALUES ('Buildings');
 INSERT INTO asset(name) VALUES ('Cash on deposit');
@@ -31,11 +31,13 @@ INSERT INTO asset(name) VALUES ('Time deposits');
 INSERT INTO asset(name) VALUES ('Warrants (to purchase securities)');
 
 INSERT INTO asset_log (asset_id, username, access_date)
-    SELECT asset_id, 'admin_user', CURRENT_DATE()
+    SELECT id, 'admin_user', CURRENT_DATE() - 1
       FROM asset;
 
+UPDATE asset SET last_access_by='admin_user', last_access_date=CURRENT_DATE() - 1;
 
-# --- Downs!
+
+# --- !Downs
 
 DELETE FROM asset_log;
 DELETE FROM asset;
