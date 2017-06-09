@@ -6,5 +6,8 @@ GET     /                           controllers.AssetController.index
 
 GET     /assets                     controllers.AssetController.list(p:Int ?= 0, s ?= "id", o ?= "asc", f ?= "")
 
+GET     /asset/:id                  controllers.AssetController.edit(id:Long)
+POST    /asset/:id                  controllers.AssetController.update(id:Long)
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

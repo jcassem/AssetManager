@@ -1,0 +1,20 @@
+@(id: Long, assetForm: Form[Asset])
+
+@import b3.vertical.fieldConstructor  // Declares a vertical field constructor as default
+
+@main {
+  <h1>Edit Asset</h1>
+
+  @b3.form(routes.AssetController.update(id)){
+    <fieldset>
+      @b3.text(assetForm("name"), '_label -> "Name", '_help -> "")
+      @b3.textarea(assetForm("description"), '_label -> "Description", '_help -> "")
+      @b3.text(assetForm("last_access_by"), '_label -> "Last Access By", '_help -> "")
+      @b3.date(assetForm("last_access_date"), '_label -> "Last Access Date", '_help -> "")
+    </fieldset>
+    <div class="action">
+      <input type="submit" value="Save" class="btn primary">
+      <a href="@routes.AssetController.list()" class="btn">Cancel</a>
+    </div>
+  }
+}

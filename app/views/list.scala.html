@@ -43,7 +43,7 @@
 
   } else {
 
-    <table class="computers zebra-striped">
+    <table class="assets zebra-striped">
       <thead>
         <tr>
           @header("id", "ID")
@@ -57,7 +57,7 @@
 
       @for(asset <- currentPage.getList) {
         <tr>
-          <td>@asset.id</td>
+          <td><a href="@routes.AssetController.edit(asset.id)">@asset.id</a></td>
           <td>@asset.name</td>
           <td>
           @if(asset.description == null) {
