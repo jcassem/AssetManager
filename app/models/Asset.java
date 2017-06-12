@@ -4,6 +4,7 @@ import javax.persistence.*;
 
 import com.avaje.ebean.Model;
 import com.avaje.ebean.PagedList;
+import org.springframework.core.annotation.Order;
 import play.data.format.Formats;
 import play.data.validation.Constraints;
 
@@ -31,6 +32,7 @@ public class Asset extends Model
 	public Date last_access_date;
 
 	@OneToMany(mappedBy = "asset")
+	@OrderBy("access_date desc")
 	public List<AssetLog> assetLogs;
 
 	// Generic query helper for entity
