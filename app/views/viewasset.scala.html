@@ -1,0 +1,54 @@
+@(asset: Asset)
+
+@main {
+    <div class="row">
+        <h2>Asset</h2>
+        <div class="form-group">
+            <label for="asset-id">Id:</label>
+            <input id="asset-id" value="@asset.id" readonly />
+        </div>
+        <div class="form-group">
+            <label for="asset-name">Name:</label>
+            <input id="asset-name" value="@asset.name" readonly />
+        </div>
+        <div class="form-group">
+            <label for="asset-description">Description:</label>
+            <input id="asset-description" value="@asset.description" readonly />
+        </div>
+        <div class="form-group">
+            <label for="asset-last-access-by">Last Access By:</label>
+            <input id="asset-last-access-by" value="@asset.last_access_by" readonly />
+        </div>
+        <div class="form-group">
+            <label for="asset-last-access-date">Last Access Date:</label>
+            <input id="asset-last-access-date" value="@asset.last_access_date" readonly />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <h2>Asset Log</h2>
+        @if(asset != null && asset.assetLogs != null && !asset.assetLogs.isEmpty()) {
+            <table class="assets zebra-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Date</th>
+                </thead>
+                <tbody>
+                @for(log <- asset.assetLogs) {
+                    <tr>
+                        <td>@log.id</td>
+                        <td>@log.username</td>
+                        <td>@log.access_date</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+
+        } else {
+            <p>No log entries</p>
+        }
+
+    </div>
+}

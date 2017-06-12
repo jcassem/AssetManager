@@ -9,6 +9,7 @@ import play.data.validation.Constraints;
 
 import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -28,6 +29,9 @@ public class Asset extends Model
 
 	@Formats.DateTime(pattern="yyyy-MM-dd")
 	public Date last_access_date;
+
+	@OneToMany(mappedBy = "asset")
+	public List<AssetLog> assetLogs;
 
 	// Generic query helper for entity
 	public static Find<Long, Asset> find = new Find<Long, Asset>()

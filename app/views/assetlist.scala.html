@@ -57,7 +57,7 @@
 
       @for(asset <- currentPage.getList) {
         <tr>
-          <td><a href="@routes.AssetController.edit(asset.id)">@asset.id</a></td>
+          <td><a href="@routes.AssetController.view(asset.id)">@asset.id</a></td>
           <td>@asset.name</td>
           <td>
           @if(asset.description == null) {

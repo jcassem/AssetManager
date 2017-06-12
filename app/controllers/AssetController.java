@@ -28,7 +28,13 @@ public class AssetController extends Controller
 
 	public Result list(int page, String sortBy, String order, String filter)
 	{
-		return ok(views.html.list.render(Asset.page(page, 20, sortBy, order, filter), sortBy, order, filter));
+		return ok(views.html.assetlist.render(Asset.page(page, 20, sortBy, order, filter), sortBy, order, filter));
+	}
+
+	public Result view(Long id)
+	{
+		Form<Asset> assetForm = formFactory.form(Asset.class).fill(Asset.find.byId(id));
+		return ok(views.html.viewasset.render(assetForm.get()));
 	}
 
 	public Result edit(Long id)
