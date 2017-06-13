@@ -9,6 +9,8 @@ import javax.inject.Named;
 import javax.persistence.*;
 import java.util.Date;
 
+import static javax.persistence.GenerationType.TABLE;
+
 @Entity
 @Named("asset_log")
 public class AssetLog extends Model
@@ -16,6 +18,7 @@ public class AssetLog extends Model
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=TABLE, generator="CUST_GEN")
 	public Long id;
 
 	@ManyToOne(fetch=FetchType.LAZY)

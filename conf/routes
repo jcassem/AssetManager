@@ -7,8 +7,12 @@ GET     /assets                     controllers.AssetController.list(p:Int ?= 0,
 GET     /asset/:id                  controllers.AssetController.view(id:Long)
 
 GET     /asset/edit/:id             controllers.AssetController.edit(id:Long)
+GET     /asset/edit/:id             controllers.AssetController.edit(id:Long)
 POST    /asset/update/:id           controllers.AssetController.update(id:Long)
 POST    /asset/delete/:id           controllers.AssetController.delete(id:Long)
+
+GET    /asset/log/create/:id        controllers.AssetController.createLog(id:Long)
+POST   /asset/log/save              controllers.AssetController.saveLog()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)

@@ -3,6 +3,7 @@ package controllers;
 import com.avaje.ebean.Ebean;
 import com.avaje.ebean.Transaction;
 import models.Asset;
+import models.AssetLog;
 import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Controller;
@@ -79,5 +80,42 @@ public class AssetController extends Controller
 	public Result delete(Long id)
 	{
 		return TODO;
+	}
+
+	public Result createLog(Long assetId)
+	{
+		Form<AssetLog> assetLogForm = formFactory.form(AssetLog.class);
+		return ok(views.html.createlog.render(assetId, assetLogForm));
+	}
+
+	public Result saveLog()
+	{
+		Form<AssetLog> assetLogForm = formFactory.form(AssetLog.class).bindFromRequest();
+		if (assetLogForm.hasErrors())
+		{
+			return GO_HOME;
+		}
+		
+		assetLogForm.get().save();
+
+		Transaction transaction = Ebean.beginTransaction();
+		try
+		{
+			Asset savedAsset = assetLogForm.get().asset;
+			if (savedAsset != null)
+			{
+				savedAsset.last_access_by = assetLogForm.get().username;
+				savedAsset.last_access_date = assetLogForm.get().access_date;
+
+				savedAsset.update();
+				transaction.commit();
+			}
+		}
+		finally
+		{
+			transaction.end();
+		}
+
+		return ok(views.html.viewasset.render(assetLogForm.get().asset));
 	}
 }

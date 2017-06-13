@@ -18,9 +18,17 @@ CREATE TABLE asset_log (
   CONSTRAINT fk_asset_id FOREIGN KEY (asset_id) REFERENCES asset(id)
 );
 
+create sequence asset_seq start with 1000;
+
+create sequence asset_log_seq start with 1000;
+
 
 # --- !Downs
 
 DROP TABLE IF EXISTS asset_log;
 
 DROP TABLE IF EXISTS asset;
+
+DROP SEQUENCE IF EXISTS asset_seq;
+
+DROP SEQUENCE IF EXISTS asset_log_seq;

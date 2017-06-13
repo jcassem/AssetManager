@@ -40,7 +40,7 @@
                     <h2>Asset Log</h2>
                 </div>
                 <div class="col-sm-5 toolbar-actions">
-                    <a href="#" class="btn btn-success">Add</a>
+                    <a href="@routes.AssetController.createLog(asset.id)" class="btn btn-success">Add</a>
                 </div>
             </div>
             @if(asset != null && asset.assetLogs != null && !asset.assetLogs.isEmpty()) {
