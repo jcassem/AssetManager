@@ -77,6 +77,24 @@ public class AssetController extends Controller
 		return view(id);
 	}
 
+	public Result create()
+	{
+		return ok(views.html.create.render(formFactory.form(Asset.class)));
+	}
+
+	public Result save()
+	{
+		Form<Asset> assetForm = formFactory.form(Asset.class).bindFromRequest();
+		if (assetForm.hasErrors())
+		{
+			return GO_HOME;
+		}
+
+		assetForm.get().save();
+
+		return ok(views.html.viewasset.render(assetForm.get()));
+	}
+
 	public Result delete(Long id)
 	{
 		return TODO;
@@ -84,8 +102,7 @@ public class AssetController extends Controller
 
 	public Result createLog(Long assetId)
 	{
-		Form<AssetLog> assetLogForm = formFactory.form(AssetLog.class);
-		return ok(views.html.createlog.render(assetId, assetLogForm));
+		return ok(views.html.createlog.render(assetId, formFactory.form(AssetLog.class)));
 	}
 
 	public Result saveLog()
@@ -95,7 +112,7 @@ public class AssetController extends Controller
 		{
 			return GO_HOME;
 		}
-		
+
 		assetLogForm.get().save();
 
 		Transaction transaction = Ebean.beginTransaction();
