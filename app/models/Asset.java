@@ -4,7 +4,6 @@ import javax.persistence.*;
 
 import com.avaje.ebean.Model;
 import com.avaje.ebean.PagedList;
-import org.springframework.core.annotation.Order;
 import play.data.format.Formats;
 import play.data.validation.Constraints;
 

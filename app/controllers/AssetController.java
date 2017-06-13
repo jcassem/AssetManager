@@ -97,7 +97,17 @@ public class AssetController extends Controller
 
 	public Result delete(Long id)
 	{
-		return TODO;
+		Asset assetToDelete = Asset.find.byId(id);
+		if (assetToDelete.assetLogs != null && !assetToDelete.assetLogs.isEmpty())
+		{
+			for (AssetLog logToDelete : assetToDelete.assetLogs)
+			{
+				logToDelete.delete();
+			}
+		}
+
+		Asset.find.ref(id).delete();
+		return GO_HOME;
 	}
 
 	public Result createLog(Long assetId)
