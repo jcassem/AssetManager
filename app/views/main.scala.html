@@ -4,23 +4,24 @@
 <html lang="en">
     <head>
         <title>Asset Manager</title>
-        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/bootstrap.min.css")">
-        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+        <link rel="stylesheet" href="@routes.Assets.versioned("bootstrap/css/bootstrap.min.css")">
+        <link rel="stylesheet" href="@routes.Assets.versioned("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
     </head>
     <body>
-        <header class="topbar">
-            <h1>
-                <a href="@routes.AssetController.index()">
-                    Asset Manager
-                </a>
-            </h1>
-        </header>
-
-        <section id="main">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
-            @content
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="@routes.AssetController.index()">Asset Manager</a>
+                </div>
             </div>
-        </section>
+        </nav>
+
+        <div class="container main-content">
+        @content
+        </div>
+
+        <script src="@routes.Assets.versioned("js/jquery.min.js")"></script>
+        <script type="text/javascript" src="@routes.Assets.versioned("bootstrap/js/bootstrap.min.js")"></script>
     </body>
 </html>

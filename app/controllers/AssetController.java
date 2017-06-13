@@ -73,6 +73,11 @@ public class AssetController extends Controller
 			transaction.end();
 		}
 
-		return GO_HOME;
+		return view(id);
+	}
+
+	public Result delete(Long id)
+	{
+		return TODO;
 	}
 }

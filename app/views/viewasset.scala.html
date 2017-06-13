@@ -1,54 +1,71 @@
 @(asset: Asset)
 
 @main {
-    <div class="row">
-        <h2>Asset</h2>
-        <div class="form-group">
-            <label for="asset-id">Id:</label>
-            <input id="asset-id" value="@asset.id" readonly />
+    <div class="row toolbar">
+        <div class="col-sm-7 toolbar-heading">
+            <h1>Asset</h1>
         </div>
-        <div class="form-group">
-            <label for="asset-name">Name:</label>
-            <input id="asset-name" value="@asset.name" readonly />
-        </div>
-        <div class="form-group">
-            <label for="asset-description">Description:</label>
-            <input id="asset-description" value="@asset.description" readonly />
-        </div>
-        <div class="form-group">
-            <label for="asset-last-access-by">Last Access By:</label>
-            <input id="asset-last-access-by" value="@asset.last_access_by" readonly />
-        </div>
-        <div class="form-group">
-            <label for="asset-last-access-date">Last Access Date:</label>
-            <input id="asset-last-access-date" value="@asset.last_access_date" readonly />
+        <div class="col-sm-5 toolbar-actions">
+            <a href="@routes.AssetController.edit(asset.id)" class="btn btn-primary">Edit</a>
+            <a href="@routes.AssetController.delete(asset.id)" class="btn btn-danger">Delete</a>
         </div>
     </div>
-    <br />
-    <div class="row">
-        <h2>Asset Log</h2>
-        @if(asset != null && asset.assetLogs != null && !asset.assetLogs.isEmpty()) {
-            <table class="assets zebra-striped">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Username</th>
-                        <th>Date</th>
-                </thead>
-                <tbody>
-                @for(log <- asset.assetLogs) {
-                    <tr>
-                        <td>@log.id</td>
-                        <td>@log.username</td>
-                        <td>@log.access_date</td>
-                    </tr>
-                }
-                </tbody>
-            </table>
+    <div class="container inner-container">
+        <div class="row">
+            <div class="form-group">
+                <label for="asset-id">Id:</label>
+                <input id="asset-id" value="@asset.id" readonly />
+            </div>
+            <div class="form-group">
+                <label for="asset-name">Name:</label>
+                <input id="asset-name" value="@asset.name" readonly />
+            </div>
+            <div class="form-group">
+                <label for="asset-description">Description:</label>
+                <input id="asset-description" value="@asset.description" readonly />
+            </div>
+            <div class="form-group">
+                <label for="asset-last-access-by">Last Access By:</label>
+                <input id="asset-last-access-by" value="@asset.last_access_by" readonly />
+            </div>
+            <div class="form-group">
+                <label for="asset-last-access-date">Last Access Date:</label>
+                <input id="asset-last-access-date" value="@asset.last_access_date" readonly />
+            </div>
+        </div>
 
-        } else {
-            <p>No log entries</p>
-        }
+        <div class="row">
+            <div class="row toolbar">
+                <div class="col-sm-7 toolbar-heading">
+                    <h2>Asset Log</h2>
+                </div>
+                <div class="col-sm-5 toolbar-actions">
+                    <a href="#" class="btn btn-success">Add</a>
+                </div>
+            </div>
+            @if(asset != null && asset.assetLogs != null && !asset.assetLogs.isEmpty()) {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Date</th>
+                    </thead>
+                    <tbody>
+                    @for(log <- asset.assetLogs) {
+                        <tr>
+                            <td>@log.id</td>
+                            <td>@log.username</td>
+                            <td>@log.access_date</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
 
+            } else {
+                <p>No log entries</p>
+            }
+
+        </div>
     </div>
 }

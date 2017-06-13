@@ -1,10 +1,5 @@
-header.topbar {
-    padding: 20px;
-    background-color: #2B2B2B;
-}
-
-section#main {
-    margin-top: 100px;
+.main-content {
+    margin-top: 80px;
 }
 
 input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly]{
@@ -14,10 +9,28 @@ input[disabled], select[disabled], textarea[disabled], input[readonly], select[r
     padding-left: 5px;
 }
 
-.form-group {
-    margin-bottom: 5px;
-}
-
 label {
     text-align: left;
+}
+
+.toolbar {
+    margin-bottom: 20px;
+    border-bottom: solid 1px;
+}
+
+.toolbar-heading h1 {
+    margin-bototm: 20px;
+}
+
+.toolbar-actions {
+    margin-top: 20px
+}
+
+.toolbar-actions .btn {
+    float: right;
+    margin-left: 5px;
+}
+
+.inner-container {
+    width: 95%;
 }
